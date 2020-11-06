@@ -1,0 +1,11 @@
+stages:
+- stage: Test
+  jobs:
+  - job: unit_tests
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    steps:
+    - script: |
+        pip install -r requirements.txt
+        pytest
+      displayName: 'Run tests'
