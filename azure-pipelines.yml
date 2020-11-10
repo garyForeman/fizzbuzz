@@ -33,5 +33,3 @@ stages:
         inputs:
           command: buildAndPush
           repository: fizzbuzz
-          dockerfile: ./Dockerfile
-          containerRegistry: fizzbuzz.azurecr.io
