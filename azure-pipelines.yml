@@ -33,3 +33,4 @@ stages:
         inputs:
           command: buildAndPush
           repository: fizzbuzz
+          containerRegistry: fizzbuzz.azurecr.io
