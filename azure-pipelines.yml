@@ -32,5 +32,4 @@ stages:
         displayName: Build and push an image to container registry
         inputs:
           command: buildAndPush
-          repository: fizzbuzz
-          containerRegistry: fizzbuzz.azurecr.io
+          containerRegistry: fizzbuzz-connection
