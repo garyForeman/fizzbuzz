@@ -22,3 +22,16 @@ stages:
     - script: |
         pytest
       displayName: 'Run tests'
+- stage: Build
+  jobs:
+  - job:  build_docker_image
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: Docker@2
+        displayName: Build and push an image to container registry
+        inputs:
+          command: buildAndPush
+          repository: fizzbuzz
+          dockerfile: ./Dockerfile
+          containerRegistry: fizzbuzz.azurecr.io
