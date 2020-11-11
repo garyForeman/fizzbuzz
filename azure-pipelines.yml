@@ -1,3 +1,7 @@
+trigger:
+  tags:
+    include: [ '*.*.*' ]
+
 stages:
 - stage: Test
   jobs:
