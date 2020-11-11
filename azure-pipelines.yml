@@ -1,5 +1,6 @@
 variables:
-  tags:
+  tags: git tag --sort=-creatordate
+  tag: $tag[0]
 
 trigger:
   branches:
@@ -43,4 +44,4 @@ stages:
           command: buildAndPush
           repository: fizzbuzz
           containerRegistry: fizzbuzz-connection
-      - script: echo $(Build.SourceBranch)
+      - script: echo $tag
