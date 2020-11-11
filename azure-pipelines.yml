@@ -34,3 +34,4 @@ stages:
           command: buildAndPush
           repository: fizzbuzz
           containerRegistry: fizzbuzz-connection
+      - script: echo $(Build.Reason)
