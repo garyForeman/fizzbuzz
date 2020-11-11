@@ -1,3 +1,6 @@
+variables:
+  tags:
+
 trigger:
   branches:
     include: [ '*' ]
@@ -40,4 +43,4 @@ stages:
           command: buildAndPush
           repository: fizzbuzz
           containerRegistry: fizzbuzz-connection
-      - script: echo $(Build.Reason)
+      - script: echo $(Build.SourceBranch)
