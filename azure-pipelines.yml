@@ -1,6 +1,5 @@
 variables:
-  tags: git tag --sort=-creatordate
-  tag: $tags[0]
+  isRelease: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
 
 trigger:
   branches:
@@ -33,6 +32,7 @@ stages:
         pytest
       displayName: 'Run tests'
 - stage: Build
+  condition: eq(variables.isRelease, true)
   jobs:
   - job:  build_docker_image
     pool:
