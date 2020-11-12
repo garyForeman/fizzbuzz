@@ -55,6 +55,6 @@ stages:
       steps:
         - task: AzureWebAppContainer@1 # Add this at the end of your file
           inputs:
-           azureSubscription: $(containerRegistry)
+           azureSubscription: fizzbuzz-app
            appName: fizzbuzz-gf
            containers: $(containerRegistry)/$(repository):$(Build.SourceBranchName)
