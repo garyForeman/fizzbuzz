@@ -1,6 +1,6 @@
 variables:
   tags: git tag --sort=-creatordate
-  tag: $tag[0]
+  tag: $tags[0]
 
 trigger:
   branches:
