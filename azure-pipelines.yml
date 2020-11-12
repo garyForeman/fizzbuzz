@@ -1,6 +1,5 @@
-variables:
-  tags: git tag --sort=-creatordate
-  tag: $tag[0]
+$tags = git tag --sort=-creatordate
+$latest_tag = $tags[0]
 
 trigger:
   branches:
@@ -44,4 +43,4 @@ stages:
           command: buildAndPush
           repository: fizzbuzz
           containerRegistry: fizzbuzz-connection
-      - script: echo $(variables.tag)
+      - script: echo $latest_tag
