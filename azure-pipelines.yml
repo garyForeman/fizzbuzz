@@ -44,6 +44,6 @@ stages:
           command: buildAndPush
           repository: fizzbuzz
           containerRegistry: fizzbuzz-connection
-      - script:
-        - echo $(tag)
-        - echo $(tags)
+      - script: |
+          echo $(tag)
+          echo $(tags)
