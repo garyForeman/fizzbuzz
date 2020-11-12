@@ -1,4 +1,6 @@
 variables:
+  repository: fizzbuzz
+  containerRegistry: fizzbuzz-connection
   isRelease: $[startsWith(variables['Build.SourceBranch'], 'refs/tags/')]
 
 trigger:
@@ -42,6 +44,17 @@ stages:
         displayName: Build and push an image to container registry
         inputs:
           command: buildAndPush
-          repository: fizzbuzz
-          containerRegistry: fizzbuzz-connection
+          repository: $(repository)
+          containerRegistry: $(containerRegistry)
           tags: $(Build.SourceBranchName)
+- stage: Deploy
+  condition: eq(variables.isRelease, true)
+  dependsOn: Build
+  jobs:
+    - job: deploy_flask_api
+      steps:
+        - task: AzureWebAppContainer@1 # Add this at the end of your file
+          inputs:
+           azureSubscription: $(containerRegistry)
+           appName: fizzbuzz-gf
+           containers: $(containerRegistry)/$(repository):$(Build.SourceBranchName)
