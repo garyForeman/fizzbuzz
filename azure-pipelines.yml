@@ -44,4 +44,4 @@ stages:
           command: buildAndPush
           repository: fizzbuzz
           containerRegistry: fizzbuzz-connection
-          tags: Build.SourceBranchName
+          tags: $(Build.SourceBranchName)
