@@ -1,3 +1,6 @@
 class FizzBuzz:
     def parse(self, i):
-        return i
+        if i % 3 == 0:
+            return 'fizz'
+        else:
+            return i
