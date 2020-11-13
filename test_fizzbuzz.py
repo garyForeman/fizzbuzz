@@ -14,3 +14,8 @@ def test_two():
 def test_three():
     fb = FizzBuzz()
     assert fb.parse(3) == 'fizz'
+
+
+def test_six():
+    fb = FizzBuzz()
+    assert fb.parse(6) == 'fizz'
