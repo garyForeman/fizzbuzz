@@ -1,3 +1,14 @@
+variables:
+  repository: fizzbuzz
+  containerRegistry: fizzbuzz-connection
+  isRelease: $[startsWith(variables['Build.SourceBranch'], 'refs/tags/')]
+
+trigger:
+  branches:
+    include: [ '*' ]
+  tags:
+    include: [ '*.*.*' ]
+
 stages:
 - stage: Test
   jobs:
@@ -22,3 +33,30 @@ stages:
     - script: |
         pytest
       displayName: 'Run tests'
+- stage: Build
+  condition: eq(variables.isRelease, true)
+  jobs:
+  - job:  build_docker_image
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: Docker@2
+        displayName: Build and push an image to container registry
+        inputs:
+          command: buildAndPush
+          repository: $(repository)
+          containerRegistry: $(containerRegistry)
+          tags: $(Build.SourceBranchName)
+- stage: Deploy
+  condition: eq(variables.isRelease, true)
+  dependsOn: Build
+  jobs:
+    - job: deploy_flask_api
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+        - task: AzureWebAppContainer@1 # Add this at the end of your file
+          inputs:
+           azureSubscription: fizzbuzz-app
+           appName: fizzbuzz-gf
+           containers: fizzbuzz.azurecr.io/$(repository):$(Build.SourceBranchName)
