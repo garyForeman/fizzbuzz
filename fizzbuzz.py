@@ -1,6 +1,6 @@
 class FizzBuzz:
     def parse(self, i):
-        if i == 5:
+        if i % 5 == 0:
             return 'buzz'
         elif i % 3 == 0:
             return 'fizz'
