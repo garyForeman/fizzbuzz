@@ -1,7 +1,7 @@
 variables:
   repository: fizzbuzz
   containerRegistry: fizzbuzz-connection
-  isReleaseCandidate: $[fnmatch(variables['Build.SourceBranch'], 'refs/tags/*.*.*-RC-*')]
+  isReleaseCandidate: $[eq(variables['Build.SourceBranch'], 'refs/tags/*.*.*-RC-*')]
   isRelease: $[startsWith(variables['Build.SourceBranch'], 'refs/tags/')]
 
 trigger:
