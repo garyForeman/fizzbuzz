@@ -59,4 +59,4 @@ stages:
           inputs:
            azureSubscription: fizzbuzz-app
            appName: fizzbuzz-gf
-           containers: $(containerRegistry)/$(repository).azurecr.io:$(Build.SourceBranchName)
+           containers: fizzbuzz.azurecr.io/$(repository):$(Build.SourceBranchName)
