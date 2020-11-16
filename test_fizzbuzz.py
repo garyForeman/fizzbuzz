@@ -34,3 +34,13 @@ def test_six():
 def test_ten():
     fb = FizzBuzz()
     assert fb.parse(10) == 'buzz'
+
+
+def test_fifteen():
+    fb = FizzBuzz()
+    assert fb.parse(15) == 'fizzbuzz'
+
+
+def test_thirty():
+    fb = FizzBuzz()
+    assert fb.parse(30) == 'fizzbuzz'
